@@ -86,3 +86,19 @@ fig_product_sales.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     xaxis=(dict(showgrid=False))
 )
+
+# SALES BY HOUR [BAR CHART]
+sales_by_hour = df_selection.groupby(by=["hour"]).sum()[["Total"]]
+fig_hourly_sales = px.bar(
+    sales_by_hour,
+    x=sales_by_hour.index,
+    y="Total",
+    title="<b>Sales by hour</b>",
+    color_discrete_sequence=["#0083B8"] * len(sales_by_hour),
+    template="plotly_white",
+)
+fig_hourly_sales.update_layout(
+    xaxis=dict(tickmode="linear"),
+    plot_bgcolor="rgba(0,0,0,0)",
+    yaxis=(dict(showgrid=False)),
+)
